@@ -3,7 +3,7 @@ import json
 
 
 class Block:
-    def __init__(self, key, transactions, timestamp, previous_hash):
+    def __init__(self, key, transactions, timestamp, previous_hash, nonce=0):
         """
         :param key: Unique ID for the block
         :param transactions: list of transactions
@@ -14,7 +14,8 @@ class Block:
         self.transactions = transactions
         self.timestamp = timestamp
         self.previous_hash = previous_hash
+        self.nonce = nonce
 
-    def compute_hash():
-        json_str = json.dumps(self.__dict__, sortKeys=True)
-        return sha256(json_str.encode()).hexdigest
+    def compute_hash(self):
+        json_str = json.dumps(self.__dict__, sort_keys=True)
+        return sha256(json_str.encode()).hexdigest()

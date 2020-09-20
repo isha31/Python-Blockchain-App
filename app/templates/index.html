@@ -1,0 +1,76 @@
+<!DOCTYPE "html">
+<html lang="en">
+  <head>
+    <meta
+      charset="UTF-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Content Sharing</title>
+  </head>
+  <body>
+    <div class="container">
+      <center><h3>Content Sharing</h3></center>
+      <form action="/submit" method="POST" style="width: 50%">
+        <div class="form-group">
+          <label for="tx-content">Content</label>
+          <textarea
+            class="form-control"
+            id="tx-content"
+            name="tx-content"
+            rows="3"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="tx-author">Author</label>
+          <input
+            type="text"
+            class="form-control"
+            id="tx-author"
+            name="tx-author"
+            placeholder="Enter your name"
+            required
+          />
+        </div>
+        <div class="row">
+          <div class="col-xs-6" style="margin-right: 20px; margin-left: 16px">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          <div class="col-xs-6"></div>
+        </div>
+      </form>
+      <form action="/mine" method="POST" style="float: right">
+        <button type="submit" class="btn btn-primary">Mine</button>
+      </form>
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th style="width: 20%" scope="col">Timestamp</th>
+              <th style="width: 30%" scope="col">Author</th>
+              <th style="width: 50%" scope="col">Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for post in posts %}
+            <tr>
+              <td style="width: 20%">{{readable_time(post.timestamp)}}</td>
+              <td style="width: 30%">{{post.author}}</td>
+              <td style="width: 50%">{{post.message}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
